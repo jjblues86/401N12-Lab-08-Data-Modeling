@@ -8,7 +8,7 @@ describe('Categories Model', () => {
         return category.post(obj)
             .then(record => {
                 Object.keys(obj).forEach(val => {
-                    expect(record[0][val]).toEqual(obj[val]);
+                    expect(record[val]).toEqual(obj[val]);
                 });
             })
             .catch(err => console.error('Error', err));
@@ -31,12 +31,27 @@ describe('Categories Model', () => {
         let obj = {name:'Test category'};
         return category.post(obj)
             .then(record => {
-                return category.put(record.id)
+                let categoryObj = {name:'Test id'};
+                return category.put(record.id,categoryObj)
                     .then(item => {
-                        Object.keys(obj).forEach(val => {
-                            expect(item[0][val]).not.toEqual(obj[val]);
-                        });
+                            expect(item.name).toBe('Test id');
+
                     });
             });
     });
+
+    test('can delete() a category', () => {
+        let obj = {name:'Test category'};
+        return category.post(obj)
+            .then(record => {
+                return category.delete(record.id)
+                    .then(outcome => {
+                return category.get(record.id)
+                    .then(item => {
+                        expect(item[0]).toBe(undefined);
+                    })
+
+                    })
+            })
+    })
 })

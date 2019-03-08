@@ -25,13 +25,17 @@ class Categories {
         return Promise.resolve(records);
     }
 
-    put(id, record) {
+    put(_id, record) {
+        record.id = _id;
         let records = this.sanitize(record);
-        if(records.id) { this.database.map((item) => (item.id === id) ? record : item);}
+        console.log(records)
+        if(records.id) { this.database.map((item) => (item.id === _id) ? record : item);}
         return Promise.resolve(records);
     }
 
-    delete(id) {
+    delete(_id) {
+        this.database = this.database.filter((record) => record.id !== _id);
+        return Promise.resolve();
     }
 
     sanitize(record) {
