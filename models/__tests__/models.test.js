@@ -2,6 +2,12 @@ const supergoose = require('./supergoose');
 const Category = require('../categories')
 const category = new Category();
 
+const Products = require('../products');
+const products = new Products();
+
+beforeAll(supergoose.startDB);
+afterAll(supergoose.stopDB);
+
 describe('Categories Model', () => {
     test('can post() a new category', () => {
         let obj = {name:'Test category'};
@@ -53,5 +59,18 @@ describe('Categories Model', () => {
 
                     })
             })
-    })
+    });
+
+    describe('Products Model', () => {
+        test('can post() a new product', () => {
+            let prod = {name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic' };
+            return products.post(prod)
+                .then(record => {
+                    Object.keys(prod).forEach(val => {
+                        expect(record[val]).toEqual(prod[val]);
+                    });
+
+                });
+        });
+    });
 })
