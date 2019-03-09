@@ -12,6 +12,7 @@ const productSchema = mongoose.Schema({
 productSchema.post('find', function() {
     this.name = this.name.toUpperCase();
     console.log(this);
+
 });
 
 // productSchema.post('init', function() {
@@ -26,6 +27,19 @@ productSchema.post('find', function() {
 
 const product = mongoose.model('product', productSchema)
 
+});
+
+productSchema.post('init', function() {
+    this.quality = this.quality.toUpperCase();
+    console.log(this);
+});
+
+productSchema.post('save', function(){
+    this.brand = this.brand.toUpperCase();
+    console.log(this);
+});
+
+const product = mongoose.model('product', productSchema)
 
 
 class Products {
@@ -36,7 +50,11 @@ class Products {
 
     get(_id) {
         let searchObject = _id ? {_id} : {};
+
         return product(searchObject);
+
+        return productSchema(searchObject);
+
     }
 
     post(entry) {

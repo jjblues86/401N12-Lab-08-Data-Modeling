@@ -75,6 +75,7 @@ describe('Categories Model', () => {
         });
     });
 
+
     test('can get() a product', () => {
         let prod = {name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic' };
         // let products2 = products;
@@ -115,6 +116,5 @@ describe('Categories Model', () => {
                     }).catch(error => console.error(error));
             }).catch(error => console.error(error));
     })
-
 
 })
