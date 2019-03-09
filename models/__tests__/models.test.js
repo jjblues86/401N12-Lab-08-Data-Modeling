@@ -8,6 +8,7 @@ const products = new Products();
 beforeAll(supergoose.startDB);
 afterAll(supergoose.stopDB);
 
+
 describe('Categories Model', () => {
     test('can post() a new category', () => {
         let obj = {name:'Test category'};
@@ -73,4 +74,47 @@ describe('Categories Model', () => {
                 });
         });
     });
+
+
+    test('can get() a product', () => {
+        let prod = {name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic' };
+        // let products2 = products;
+        return products.post(prod)
+            .then(record => {
+                return products.get(record._id)
+                    .then(product => {
+                         prod.category = 'New shoe';
+                        Object.keys(prod).forEach(val => {
+                            expect(product[0][val]).toEqual(prod[val]);
+                        })
+                    }).catch(error => console.error(error));
+            }).catch(error => console.error(error));
+    });
+
+    test('can put() a new Product', () => {
+        let prod = {name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic' };
+        return products.post(prod)
+            .then(record => {
+                let newProd = {name:'Watch', brand:'APPLE', quality:'Durable'};
+                return products.put(record._id,newProd)
+                    .then(output => {
+                        expect(output.name).toBe('Watch');
+            })
+        })
+    });
+
+    test('can delete() a Product', () => {
+        let prod = {name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic' };
+        return products.post(prod)
+            .then(record => {
+                return products.delete(record._id)
+                    .then(output => {
+                        return products.get(record._id)
+                            .then(item => {
+                                expect(item[0]).toBe(undefined);
+                            })
+                    }).catch(error => console.error(error));
+            }).catch(error => console.error(error));
+    })
+
 })
