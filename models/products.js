@@ -15,31 +15,10 @@ productSchema.post('find', function() {
 
 });
 
-// productSchema.post('init', function() {
-//     this.quality = this.quality.toUpperCase();
-//     console.log(this);
-// });
-//
-// productSchema.post('save', function(){
-//     this.brand = this.brand.toUpperCase();
-//     console.log(this);
-// });
 
-const product = mongoose.model('product', productSchema)
+const product = mongoose.model('product', productSchema);
 
-});
 
-productSchema.post('init', function() {
-    this.quality = this.quality.toUpperCase();
-    console.log(this);
-});
-
-productSchema.post('save', function(){
-    this.brand = this.brand.toUpperCase();
-    console.log(this);
-});
-
-const product = mongoose.model('product', productSchema)
 
 
 class Products {
@@ -52,8 +31,6 @@ class Products {
         let searchObject = _id ? {_id} : {};
 
         return product(searchObject);
-
-        return productSchema(searchObject);
 
     }
 
