@@ -8,7 +8,7 @@ const products = new Products();
 beforeAll(supergoose.startDB);
 afterAll(supergoose.stopDB);
 
-
+// Jerome - category testing
 describe('Categories Model', () => {
     test('can post() a new category', () => {
         let obj = {name:'Test category'};
@@ -61,6 +61,8 @@ describe('Categories Model', () => {
                     })
             })
     });
+
+    // Jerome - Products model testing
 
     describe('Products Model', () => {
         test('can post() a new product', () => {

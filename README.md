@@ -5,8 +5,8 @@
 ### Author: Jerome Joof
 
 ### Links and Resources
-* [repo](https://github.com/jjblues86/401N12-Lab01.git)
-* [travis](https://www.travis-ci.com/jjblues86/401N12-Lab01)
+* [repo](https://github.com/jjblues86/401N12-Lab-08-Data-Modeling)
+* [travis](https://www.travis-ci.com/jjblues86/401N12-Lab-08-Data-Modeling.svg?branch=master)
 
 
 
@@ -21,7 +21,7 @@
 
 ### Setup
 * npm i supertest
-* env.PORT || 8080
+* env.PORT || 3000
 
 
 #### Running the app
@@ -29,7 +29,7 @@
 
 #### Tests
 * How do you run tests?
-`jest server.test.js`
+`node index.js`
 * What assertions were made?
 ``
 * What assertions need to be / should be made?
