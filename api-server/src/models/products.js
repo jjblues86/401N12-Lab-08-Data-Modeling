@@ -15,15 +15,6 @@ productSchema.post('find', function() {
 
 });
 
-// productSchema.post('init', function() {
-//     this.quality = this.quality.toUpperCase();
-//     console.log(this);
-// });
-//
-// productSchema.post('save', function(){
-//     this.brand = this.brand.toUpperCase();
-//     console.log(this);
-// });
 
 const product = mongoose.model('product', productSchema)
 

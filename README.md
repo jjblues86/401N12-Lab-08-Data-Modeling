@@ -6,7 +6,7 @@
 
 ### Links and Resources
 * [repo](https://github.com/jjblues86/401N12-Lab-08-Data-Modeling)
-* [travis](https://www.travis-ci.com/jjblues86/401N12-Lab-08-Data-Modeling.svg?branch=master)
+* [![Build Status](https://travis-ci.com/jjblues86/401N12-Lab-08-Data-Modeling.svg?branch=master)](https://travis-ci.com/jjblues86/401N12-Lab-08-Data-Modeling)
 
 
 
