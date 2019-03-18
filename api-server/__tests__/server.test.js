@@ -9,7 +9,7 @@ beforeAll(supergoose.startDB);
 afterAll(supergoose.stopDB);
 
 // Jerome - Test category routes
-describe('TEST ROUTES', () => {
+describe('CATEGORY TEST ROUTES', () => {
     test('can POST() a new /category route', () => {
 
         return mockRequest // JEROME- This is a JS promise
@@ -49,13 +49,10 @@ describe('TEST ROUTES', () => {
                                 console.log(record2.body)
                                 expect(record2.body.results[0].name).toBe('Test Category')
                                 expect(record2.body.results[0].name).toBe('Test Category')
-
                                 expect(record2.status).toBe(200)
-                            })
-
-            })
-
-    })
+                            });
+            });
+    });
 
 
     test('can PUT() a new /category route', () => {
@@ -84,8 +81,70 @@ describe('TEST ROUTES', () => {
                     .delete(`/categories/${record.body.id}`)
                     .then(record1 => {
                                 expect(record1.status).toBe(200)
-                    })
+                    });
+            });
+    });
 
-            })
-    })
+});
+
+// Jerome- Test Products Routes
+describe('PRODUCTS TEST ROUTES', () => {
+    test('can POST() a /products route', () => {
+
+        return mockRequest // JEROME- This is a JS promise
+            .post('/products') // INPUT
+            .send({name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic'})
+            .then(record => {
+                expect(record.body.name).toBe('Shoes')
+                expect(record.status).toBe(200)
+            });
+    });
+
+    // test('can GET() a /products:id route', () => {
+    //
+    //     return mockRequest // JEROME- This is a JS promise
+    //         .post('/products') //INPUT
+    //         .send({name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic'})
+    //         .then(record => {
+    //             return mockRequest
+    //                 .get(`/products/${record.body.id}`)
+    //                 .then(records => {
+    //                     console.log(records.body)
+    //                     expect(records.body[0].name).toBe('Shoes')
+    //                     expect(records.status).toBe(200)
+    //                 });
+    //
+    //         });
+    // });
+
+    test('can PUT() a new /product route', () => {
+        return mockRequest // JEROME- This is a JS promise
+            .post('/products')// INPUT
+            .send({name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic'})
+            .then(record => {
+                return mockRequest
+                    .put(`/products/${record.body.id}`)
+                    .then( records => {
+                        expect(records.body.name).toBe('Shoes');
+                        expect(records.status).toBe(200);
+                    });
+            });
+
+    });
+
+    test('can DELETE() a /product route', () => {
+
+        return mockRequest // JEROME- This is a JS promise
+            .post('/products') // INPUT
+            .send({name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic'})
+            .then(record => {
+                return mockRequest
+                    .delete(`/products/${record.body.id}`)
+                    .then( records => {
+                        expect(records.status).toBe(200);
+                    });
+            });
+
+
+    });
 })
