@@ -100,22 +100,22 @@ describe('PRODUCTS TEST ROUTES', () => {
             });
     });
 
-    test('can GET() a /products:id route', () => {
-
-        return mockRequest // JEROME- This is a JS promise
-            .post('/products') //INPUT
-            .send({name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic'})
-            .then(record => {
-                return mockRequest
-                    .get(`/products/${record.body.id}`)
-                    .then(records => {
-                        console.log(records.body)
-                        expect(records.body[0].name).toBe('Shoes')
-                        expect(records.status).toBe(200)
-                    });
-
-            });
-    });
+    // test('can GET() a /products:id route', () => {
+    //
+    //     return mockRequest // JEROME- This is a JS promise
+    //         .post('/products') //INPUT
+    //         .send({name:'Shoes', brand: 'BALENCIAGA', quality: 'Authentic'})
+    //         .then(record => {
+    //             return mockRequest
+    //                 .get(`/products/${record.body.id}`)
+    //                 .then(records => {
+    //                     console.log(records.body)
+    //                     expect(records.body[0].name).toBe('Shoes')
+    //                     expect(records.status).toBe(200)
+    //                 });
+    //
+    //         });
+    // });
 
     test('can PUT() a new /product route', () => {
         return mockRequest // JEROME- This is a JS promise
